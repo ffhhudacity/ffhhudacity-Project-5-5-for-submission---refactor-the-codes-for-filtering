@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <title>Neighborhood Map</title>
+  
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <div class="col-xs-12 Title">
+      <h4>Search your City/State. The Foursquare top picks will be shown on the map.</h4>
+    </div>
+    
+    <div class="col-xs-12">
+      <div class="CityStateInfo">City/State
+        <input data-bind="value: neighborhood" type="text" name ="search"  id="neighborhood-location"  value="">
+      </div>  
+      
+      <div class="CityStateInfo">Filter by Details
+        <input data-bind="value: exploreKeyword; neighborhood" type="text" name ="query" class="InputForm" id="explore-venues" placeholder="Places/Resturants/Stores etc..."> 
+      </div>
+
+      <div>
+        <button type="button">Click to Search</button>
+      </div>
+    <div>
+          
+
+    <div class="col-xs-2">
+      <div data-bind="visible: displayVenuesList" id="venues-listing" style="display:none" class="venues-listing-box">
+         <!-- ko foreach: topPicks() -->
+        <div data-bind="css:{'selected-venue-item': id === $root.selectedVenue()}, click: $root.panToMarker" class="venue-listing-item group">
+          
+          <div data-bind="text: name" class="venue-name"></div>
+        </div>  
+        <!-- /ko -->         
+
+      </div>
+    </div>
+    
+    <div class="col-xs-10"> 
+      <div id="map-canvas"></div>
+        <div class="grey">
+          <div class="nyTimes">
+          <h3 id="nytimes-header">New York Times Articles</h3>
+          <span id="nytimes-articles"> </span>
+          </div>
+        </div>
+    </div>
+    <!-- the following is to tell when it is offline or not -->
+    <div id="status"></div>
+    <div id="log"></div>
+    <!-- done -->
+    <script src="js/jQuery.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>  
+    <script src="js/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+ 
+</html>
